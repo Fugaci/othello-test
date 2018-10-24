@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body, .page {
+    width: 100%;
+    height: 100%;
+}
+body {
+    line-height: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    user-select: none;
+}
+ul {
+    list-style-type: none;
+}
+table {
+    background-color: green;
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;
+    border-collapse: collapse;
+}
+td {
+    width: 50px;
+    height: 50px;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    position: relative;
+}
+td::before {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    margin: auto;
+    border-radius: 50%;
+}
+.cell_1::before {
+    content: "";
+    background-color: #000;
+}
+.cell_2::before {
+    content: "";
+    background-color: #FFF;
+}
+.humanTurn .puttable {
+    animation: puttable .5s alternate infinite;
+    cursor: pointer;
+}
+@keyframes puttable {
+    0% {
+        background-color: rgba(255, 255, 255, .1);;
+    }
+    100% {
+        background-color: rgba(255, 255, 255, .3);
+    }
+}
+
+[v-cloak] {
+    display: none;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+    <html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Othello</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="app" v-cloak>
+            <div  v-if="showSettings">
+                <ul>
+                    <li>
+                        <label>
+                            <span class="label-text">盤面サイズ</span>
+                            <input type="number" min="4" step="2" v-model="size">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <span class="label-text">黒 プレイヤー</span>
+                            <select v-model="blackPlayer">
+                                <option value="human">人間</option>
+                                <option value="random">ランダム選択型</option>
+                                <option value="montecarlo">原始モンテカルロ法</option>
+                            </select>
+                        </label>
+                    </li>
+                    <li v-if="blackPlayer === 'montecarlo'">
+                        <label>
+                            <span class="label-text">黒 試行回数</span>
+                            <input type="number" min="0" v-model="blackTryNum">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <span class="label-text">白 プレイヤー</span>
+                            <select v-model="whitePlayer">
+                                <option value="human">人間</option>
+                                <option value="random">ランダム選択型</option>
+                                <option value="montecarlo">原始モンテカルロ法</option>
+                            </select>
+                        </label>
+                    </li>
+                    <li v-if="whitePlayer === 'montecarlo'">
+                        <label>
+                            <span class="label-text">白 試行回数</span>
+                            <input type="number" min="0" v-model="whiteTryNum">
+                        </label>
+                    </li>
+                    <li><button @click="init">開始</button></li>
+                </ul>
+            </div>
+            <div v-else>
+                手番: {{turn}}<br>
+                黒の数: {{blackCount}}<br>
+                白の数: {{whiteCount}}<br>
+                <strong>{{winnerMessage}}</strong>
+            </div>
+        </div>
+        <table>
+            <tbody id="table"></tbody>
+        </table>
+        <script src="vue.js"></script>
+        <script src="OthelloGame.js"></script>
+        <script src="ui.js"></script>
+    </body>
+</html>
